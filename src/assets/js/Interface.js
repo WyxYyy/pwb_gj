@@ -17,6 +17,4 @@ const UrlHost = 'http://192.168.1.107/YueFuDaRen/public',
             acceptOrderList : UrlHost + '/api/keeper/order/acceptOrderList',            //可接订单
       }
 
-export default {
-    config,UrlHost
-}
+export { config, UrlHost };

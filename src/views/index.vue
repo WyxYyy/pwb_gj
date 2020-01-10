@@ -108,7 +108,7 @@
                             this.indexData = res.data.data
                        }
                    }else if(res.data.code == -1){
-                       this.$localStore.delLocal('userIdentity')
+                        this.$localStore.delLocal('userIdentity')
                         this.$localStore.delLocal('token')
                    }
                 })

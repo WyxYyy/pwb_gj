@@ -167,6 +167,7 @@
 
 <script>
     import footerBar from '@/components/footerBar'
+    import { houseAPI } from '../js/publicAxios'
 
     export default {
         data() {
@@ -197,28 +198,9 @@
                     })
                 }
             },
-            get(apiUrl, getData, type) {
-                var that = this
-                this.$axios({
-                    url: apiUrl,
-                    method: 'get',
-                    headers: {
-                        'XX-Token': this.$localStore.getLocal('token'),
-                        'XX-Device-Type': 'mobile'
-                    },
-                    params: getData,
-                }).then((res) => {
+            getStatisticInfo(type) {
+                getStatisticInfo(type).then(res => {
                     console.log(res)
-                    var data = res.data.data
-                    if(res.data.code == 1){
-                        if(type == 'Statistics'){
-                            this.teamStatistics = data
-                            this.minDate = new Date(data.keeperCreateTime)
-                            this.isSelect = false   
-                        }else if(type == 'teamStaff'){
-                            this.teamStaff = data.teamBusinessStatistics    
-                        }
-                    }
                 })
             },
             goDetail(id){
@@ -254,8 +236,8 @@
                     name: 'peopleStatistics',
                 })
             }
-            this.get(this.Interface.config.teamStatistics,'','Statistics')
-            this.get(this.Interface.config.teamStaff,'','teamStaff')
+            this.getStatisticInfo('Statistics');
+            this.getStatisticInfo('teamStaff');
             console.log(this.$localStore.getLocal('token'))
         }
     }
